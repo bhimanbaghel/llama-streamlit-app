@@ -1,12 +1,12 @@
 # 🤖 AI Text Completion App
 
-A fully functional Streamlit application that provides AI-powered text completion using Meta's Llama-3.2-1B model. This app runs entirely on CPU and provides an intuitive web interface for generating text completions.
+A fully functional Streamlit application that provides AI-powered text completion using Meta's Llama-3.2-1B model. This app runs efficiently on both CPU and GPU with automatic device detection and provides an intuitive web interface for generating text completions.
 
 ## ✨ Features
 
 - **Modern Web Interface**: Clean and responsive Streamlit GUI
 - **AI-Powered Completions**: Uses Meta's Llama-3.2-1B model for text generation
-- **CPU Optimized**: Runs efficiently on CPU without requiring GPU
+- **Flexible Hardware Support**: Runs efficiently on both CPU and GPU with automatic device detection
 - **Customizable Settings**: Adjustable temperature and max length parameters
 - **Real-time Generation**: Fast text completion with progress indicators
 - **Example Prompts**: Pre-loaded example prompts to get started quickly
@@ -20,6 +20,7 @@ A fully functional Streamlit application that provides AI-powered text completio
 - Python 3.8 or higher
 - At least 4GB of RAM (8GB+ recommended)
 - Internet connection for initial model download
+- Optional: CUDA-compatible GPU for faster inference
 
 ### Installation
 
@@ -42,6 +43,7 @@ A fully functional Streamlit application that provides AI-powered text completio
    - Open your web browser
    - Navigate to `http://localhost:8501`
    - The app will automatically download the model on first run (this may take a few minutes)
+   - GPU will be used automatically if available, otherwise falls back to CPU
 
 ## 🎯 How to Use
 
@@ -59,7 +61,7 @@ A fully functional Streamlit application that provides AI-powered text completio
 ### Model Settings
 
 - **Model**: meta-llama/Llama-3.2-1B
-- **Device**: CPU (automatically configured)
+- **Device**: GPU (if available) or CPU (automatic detection)
 - **Max Length**: 50-1024 tokens (adjustable)
 - **Temperature**: 0.1-2.0 (adjustable)
 
@@ -67,8 +69,12 @@ A fully functional Streamlit application that provides AI-powered text completio
 
 - **First Run**: Model download takes 2-5 minutes depending on internet speed
 - **Subsequent Runs**: Model is cached and loads much faster
-- **Memory Usage**: App uses ~2-4GB RAM during operation
-- **Generation Speed**: Typically 2-10 seconds per completion
+- **GPU Usage**: Automatically detects and uses GPU if available for faster inference
+- **CPU Fallback**: Seamlessly falls back to CPU if no GPU is available
+- **Memory Usage**: ~2-4GB RAM (CPU) or ~3-6GB VRAM (GPU) during operation
+- **Generation Speed**: 
+  - GPU: Typically 1-3 seconds per completion
+  - CPU: Typically 5-15 seconds per completion
 
 ## 📁 Project Structure
 
@@ -93,7 +99,8 @@ streamlittest/
 - **Name**: meta-llama/Llama-3.2-1B
 - **Size**: ~2.5GB download
 - **Type**: Causal Language Model
-- **Precision**: Float32 (CPU optimized)
+- **Hardware**: Supports both GPU and CPU inference
+- **Precision**: Automatic (optimized for available hardware)
 
 ## 🎨 Features Breakdown
 
@@ -106,7 +113,7 @@ streamlittest/
 ### AI Integration
 - Efficient model loading with caching
 - Error handling for model failures
-- CPU-optimized inference
+- Automatic GPU/CPU detection and optimization
 - Customizable generation parameters
 
 ### User Experience
@@ -127,10 +134,11 @@ streamlittest/
 2. **Out of Memory Error**
    - Close other applications
    - Reduce max_length parameter
-   - Ensure at least 4GB RAM available
+   - Ensure sufficient RAM (CPU) or VRAM (GPU)
+   - Try switching between GPU/CPU modes
 
 3. **Slow Generation**
-   - This is normal for CPU inference
+   - GPU mode provides faster inference than CPU
    - Consider reducing max_length for faster results
    - First-time model download creates temporary slowdown
 
