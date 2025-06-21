@@ -2,6 +2,12 @@
 
 A fully functional Streamlit application that provides AI-powered text completion using Meta's Llama-3.2-1B model. This app runs efficiently on both CPU and GPU with automatic device detection and provides an intuitive web interface for generating text completions.
 
+## 📸 App Interface
+
+![App Interface](ui.png)
+
+*Screenshot showing the clean, modern interface with input/output sections and customizable settings*
+
 ## ✨ Features
 
 - **Modern Web Interface**: Clean and responsive Streamlit GUI
