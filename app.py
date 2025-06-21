@@ -264,7 +264,7 @@ def main():
     
     # Footer
     st.markdown("---")
-    st.markdown("**Made with ❤️ using Streamlit and Hugging Face Transformers**")
+    st.markdown("**Made with ❤️ by Bhiman using Streamlit and Hugging Face Transformers**")
     st.markdown(f"*Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*")
 
 if __name__ == "__main__":
